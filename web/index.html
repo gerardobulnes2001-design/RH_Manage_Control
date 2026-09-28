@@ -1,46 +1,165 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="La García Zapatería - Sistema de Trazabilidad y Control de RH en Piso">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="rh_manage_control">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="La García RH">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>rh_manage_control</title>
+  <title>La García Zapatería — RH & Control</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #F7F8FA;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden;
+    }
+    #loading-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #F7F8FA;
+      z-index: 99999;
+      transition: opacity 0.4s ease-out;
+    }
+    .logo-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #C8102E, #8B0018);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(200, 16, 46, 0.3);
+      margin-bottom: 16px;
+    }
+    .logo-badge svg {
+      width: 34px;
+      height: 34px;
+      fill: #ffffff;
+    }
+    .brand-title {
+      color: #C8102E;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin: 0;
+    }
+    .brand-subtitle {
+      background-color: #14213D;
+      color: #ffffff;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 4px;
+      margin-bottom: 24px;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3.5px solid #FFD9DF;
+      border-top: 3.5px solid #C8102E;
+      border-radius: 50%;
+      animation: spin 0.9s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+    }
+    .loading-text {
+      color: #475569;
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 14px;
+    }
+    #error-box {
+      display: none;
+      max-width: 90%;
+      width: 400px;
+      margin-top: 16px;
+      padding: 12px;
+      background-color: #FEE2E2;
+      border: 1px solid #DC2626;
+      border-radius: 8px;
+      color: #991B1B;
+      font-size: 12px;
+      text-align: center;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
+  <!-- Pantalla de carga con identidad visual institucional -->
+  <div id="loading-container">
+    <div class="logo-badge">
+      <svg viewBox="0 0 24 24">
+        <path d="M4 4h16v2H4zm0 4h16l1 12H3zm2 2l-.67 8h13.34l-.67-8z"/>
+      </svg>
+    </div>
+    <h1 class="brand-title">LA GARCÍA</h1>
+    <div class="brand-subtitle">Z A P A T E R Í A</div>
+    <div class="spinner"></div>
+    <div class="loading-text">Cargando sistema de control y RH...</div>
+    <div id="error-box"></div>
+  </div>
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
-  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    // Captura global de errores para diagnóstico
+    window.addEventListener('error', function(event) {
+      console.error('[La García RH Web Error]', event);
+      var errBox = document.getElementById('error-box');
+      if (errBox) {
+        errBox.style.display = 'block';
+        errBox.innerHTML = '<strong>Aviso de carga:</strong> ' + (event.message || 'Comprobando recursos web...');
+      }
+    });
+
+    // Ocultar pantalla de carga una vez inicializado Flutter
+    function hideLoader() {
+      var loader = document.getElementById('loading-container');
+      if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(function() {
+          loader.remove();
+        }, 400);
+      }
+    }
+  </script>
+
+  <script src="flutter_bootstrap.js" async onload="console.log('flutter_bootstrap loaded')"></script>
+
+  <script>
+    // Respaldo para remover el loader si el motor arranca
+    window.addEventListener('flutter-first-frame', function () {
+      hideLoader();
+    });
+    // Timeout de seguridad para evitar pantallas bloqueadas
+    setTimeout(function() {
+      if (document.querySelector('flt-glass-pane') || document.querySelector('flutter-view')) {
+        hideLoader();
+      }
+    }, 4000);
+  </script>
 </body>
 </html>

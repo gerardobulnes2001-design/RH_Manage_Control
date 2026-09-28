@@ -32,6 +32,11 @@ jobs:
       - name: Build Web Application
         run: flutter build web --release --base-href /
 
+      - name: Copy Cloudflare Pages Rules
+        run: |
+          cp web/_redirects build/web/_redirects || true
+          cp web/_headers build/web/_headers || true
+
       - name: Deploy to gh-pages branch (Ready for Cloudflare Pages)
         uses: JamesIves/github-pages-deploy-action@v4
         with:

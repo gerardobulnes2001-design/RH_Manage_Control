@@ -11,6 +11,7 @@ import '../../theme/app_colors.dart';
 import '../../widgets/brand_logo.dart';
 import '../auth/login_screen.dart';
 import '../rh/rh_dashboard_screen.dart';
+import 'supabase_settings_dialog.dart';
 
 class AdminDashboardScreen extends StatefulWidget {
   const AdminDashboardScreen({super.key});
@@ -331,6 +332,11 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> with Single
         ),
         actions: [
           // Acceso a módulo RH
+          IconButton(
+            icon: const Icon(Icons.storage_rounded, color: Color(0xFF3ECF8E)),
+            tooltip: 'Configurar Supabase',
+            onPressed: () => SupabaseSettingsDialog.show(context),
+          ),
           IconButton(
             icon: const Icon(Icons.assignment_outlined, color: AppColors.primary),
             tooltip: 'Ir a Módulo de Supervisión RH',

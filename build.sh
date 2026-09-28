@@ -17,4 +17,8 @@ flutter pub get
 echo "=== Compilando Flutter Web en modo Release ==="
 flutter build web --release --base-href /
 
+echo "=== Copiando reglas para Cloudflare Pages ==="
+cp web/_redirects build/web/_redirects 2>/dev/null || true
+cp web/_headers build/web/_headers 2>/dev/null || true
+
 echo "=== Compilación exitosa en build/web ==="

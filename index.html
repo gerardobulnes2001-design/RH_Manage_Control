@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La García Zapatería — Despliegue en Cloudflare</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #F7F8FA;
+      color: #0F172A;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 520px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid #E2E8F0;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: #C8102E;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      color: #14213D;
+      font-size: 22px;
+      margin: 0 0 10px 0;
+    }
+    p {
+      color: #475569;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0 0 20px 0;
+    }
+    .steps {
+      background: #F1F5F9;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: left;
+      font-size: 13px;
+      color: #1E293B;
+      margin-bottom: 24px;
+    }
+    .steps ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .steps li {
+      margin-bottom: 8px;
+    }
+    .btn {
+      display: inline-block;
+      background: #14213D;
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .btn:hover {
+      background: #263859;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">LA GARCÍA ZAPATERÍA</div>
+    <h1>Configuración de Cloudflare Pages</h1>
+    <p>Has desplegado la rama de código fuente (<code>main</code>). Para ver la aplicación móvil funcionando directamente en Cloudflare Pages, ajusta la rama de producción:</p>
+    
+    <div class="steps">
+      <ol>
+        <li>En tu panel de <strong>Cloudflare Dashboard</strong>, entra a tu proyecto de <strong>Pages</strong>.</li>
+        <li>Ve a <strong>Settings</strong> > <strong>Builds & deployments</strong>.</li>
+        <li>Cambia <strong>Production branch</strong> a: <code>gh-pages</code></li>
+        <li>Asegúrate de que <strong>Build command</strong> esté vacío y <strong>Output directory</strong> sea <code>/</code>.</li>
+        <li>Haz clic en <strong>Save</strong> y re-despliega.</li>
+      </ol>
+    </div>
+
+    <a href="https://github.com/gerardobulnes2001-design/RH_Manage_Control/tree/gh-pages" class="btn" target="_blank">Ver Rama de Producción (gh-pages)</a>
+  </div>
+</body>
+</html>
