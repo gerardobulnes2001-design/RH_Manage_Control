@@ -6,7 +6,6 @@ import '../../theme/app_colors.dart';
 import '../../widgets/brand_logo.dart';
 import '../rh/rh_dashboard_screen.dart';
 import '../admin/admin_dashboard_screen.dart';
-import '../admin/supabase_settings_dialog.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -236,21 +235,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             side: const BorderSide(color: AppColors.cardBorder, width: 1.5),
                           ),
                         ),
-                        const SizedBox(height: 10),
-
-                        // Botón Configurar Supabase
-                        TextButton.icon(
-                          onPressed: () => SupabaseSettingsDialog.show(context),
-                          icon: const Icon(Icons.storage_rounded, size: 16, color: Color(0xFF3ECF8E)),
-                          label: Text(
-                            'Configurar Base de Datos Supabase',
-                            style: GoogleFonts.plusJakartaSans(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.navy,
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -258,7 +242,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 24),
                   Center(
                     child: Text(
-                      'La García Zapatería © 2026 • Base de Datos en Supabase',
+                      'La García Zapatería © 2026 • Modo Local y Persistente',
                       style: GoogleFonts.plusJakartaSans(
                         fontSize: 11,
                         color: AppColors.textMuted,
